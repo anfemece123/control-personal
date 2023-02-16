@@ -54,7 +54,7 @@ export default function Navbar() {
             </MDBNavbarItem>
             <Link to="/FormNewEmployed">
               <MDBNavbarItem>
-                <MDBNavbarLink href="#">Registrar empleado</MDBNavbarLink>
+                <MDBNavbarLink href="#">Agregar operario</MDBNavbarLink>
               </MDBNavbarItem>
             </Link>
           </MDBNavbarNav>
@@ -66,7 +66,7 @@ export default function Navbar() {
           <MDBDropdown>
             <MDBDropdownToggle tag="a" className="nav-link" role="button">
               <img
-                src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                src="https://images.vexels.com/media/users/3/147102/isolated/preview/082213cb0f9eabb7e6715f59ef7d322a-icono-de-perfil-de-instagram.png"
                 alt=""
                 style={{ width: "45px", height: "45px" }}
                 className="rounded-circle"

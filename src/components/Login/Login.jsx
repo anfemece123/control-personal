@@ -8,7 +8,6 @@ import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdb-react-ui-kit";
 import Form from "react-bootstrap/Form";
 
 export const Login = () => {
-  // const [formularioEnviado, setformularioEnviado] = useState(false);
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -94,41 +93,7 @@ export const Login = () => {
               <h3 className="text-center mt-3" style={{ color: "white" }}>
                 LOGIN
               </h3>
-              {/* <Formik
-                initialValues={{
-                  email: "",
-                  password: "",
-                }}
-                onSubmit={async (values, { resetForm }) => {
-                  try {
-                    await login(values.email, values.password);
-                    // resetForm();
-                    // setformularioEnviado(true);
-                    swal({
-                      title: "Excellent!",
-                      text: "Remember to verify it! Check your email",
-                      icon: "success",
-                    });
-                    navigate("/home");
-                  } catch (error) {
-                    console.log("error", error);
-                    // swal({
-                    //   title: "Excellent!",
-                    //   text: error.message,
-                    //   icon: "danger",
-                    // });
-                  }
-                }}
-                validate={(values) => validate(values)}
-              > */}
-              {/* {({
-                  handleSubmit,
-                  errors,
-                  values,
-                  handleChange,
-                  handleBlur,
-                  touched,
-                }) => ( */}
+
               <form className="" onSubmit={handleSubmit}>
                 <Form.Group className="mb-3 p-2">
                   <Form.Label
@@ -146,12 +111,7 @@ export const Login = () => {
                     placeholder="email"
                     // value={values.email}
                     onChange={handleChange}
-
-                    // onBlur={handleBlur}
                   />
-                  {/* {touched.email && errors.email && (
-                       
-                      )} */}
                 </Form.Group>
 
                 <Form.Group className="mb-3 p-2">
@@ -168,13 +128,8 @@ export const Login = () => {
                     id="password"
                     name="password"
                     placeholder="password"
-                    // value={values.password}
                     onChange={handleChange}
-                    // onBlur={handleBlur}
                   />
-                  {/* {touched.password && errors.password && (
-                       
-                      )} */}
                 </Form.Group>
 
                 <div className="mb-3 p-2">
@@ -189,8 +144,6 @@ export const Login = () => {
                 </div>
                 <hr className="" />
               </form>
-              {/* )} */}
-              {/* </Formik> */}
             </MDBCol>
           </MDBRow>
           <MDBRow className="">

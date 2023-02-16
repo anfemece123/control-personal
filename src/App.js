@@ -5,18 +5,24 @@ import { AuthProvider } from "./context/authContext";
 import { FormRegisterManager } from "./components/FormRegisterManager/FormRegisterManager";
 import { Home } from "./components/Home/Home";
 import { FormNewEmployed } from "./components/FormNewEmployed/FormNewEmployed";
+import { DbProvider } from "./context/dbContext";
 // import { ProtectedRoute } from "./components/ProtectedRoute";
 
 export default function App() {
   return (
-    <AuthProvider>
-      <Routes>
-        <Route path="/" element={<Login />} />
+    <DbProvider>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Login />} />
 
-        <Route path="/formRegisterManager" element={<FormRegisterManager />} />
-        <Route path="/FormNewEmployed" element={<FormNewEmployed />} />
-        <Route path="/home" element={<Home />} />
-      </Routes>
-    </AuthProvider>
+          <Route
+            path="/formRegisterManager"
+            element={<FormRegisterManager />}
+          />
+          <Route path="/FormNewEmployed" element={<FormNewEmployed />} />
+          <Route path="/home" element={<Home />} />
+        </Routes>
+      </AuthProvider>
+    </DbProvider>
   );
 }

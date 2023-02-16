@@ -7,8 +7,11 @@ import {
   MDBTableBody,
   MDBIcon,
 } from "mdb-react-ui-kit";
+import { useDb } from "../../context/dbContext";
 
 export default function TablaEmployed() {
+  const { employes, deleteEmploye } = useDb();
+
   return (
     <div>
       {/* <MDBBtn className="m-3 text-dark" color="light">
@@ -17,110 +20,63 @@ export default function TablaEmployed() {
       <MDBTable align="middle">
         <MDBTableHead style={{ color: "white" }}>
           <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Title</th>
-            <th scope="col">Status</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Documento</th>
+            {/* <th scope="col">Status</th> */}
             <th scope="col">Position</th>
             <th scope="col">Actions</th>
           </tr>
         </MDBTableHead>
-        <MDBTableBody style={{ color: "white" }}>
-          <tr>
-            <td>
-              <div className="d-flex align-items-center">
-                <img
-                  src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-                  alt=""
-                  style={{ width: "45px", height: "45px" }}
-                  className="rounded-circle"
-                />
-                <div className="ms-3">
-                  <p className="fw-bold mb-1">John Doe</p>
-                  <p className=" mb-0 " style={{ color: "white" }}>
-                    john.doe@gmail.com
-                  </p>
-                </div>
-              </div>
-            </td>
-            <td>
-              <p className="fw-normal mb-1">Software engineer</p>
-              <p className="text-muted mb-0">IT department</p>
-            </td>
-            <td>
-              <MDBBadge color="success" pill>
-                Active
-              </MDBBadge>
-            </td>
-            <td>Senior</td>
-            <td>
-              <MDBBtn color="link" rounded size="sm">
-                Edit
-              </MDBBtn>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div className="d-flex align-items-center">
-                <img
-                  src="https://mdbootstrap.com/img/new/avatars/6.jpg"
-                  alt=""
-                  style={{ width: "45px", height: "45px" }}
-                  className="rounded-circle"
-                />
-                <div className="ms-3">
-                  <p className="fw-bold mb-1">Alex Ray</p>
-                  <p className="text-muted mb-0">alex.ray@gmail.com</p>
-                </div>
-              </div>
-            </td>
-            <td>
-              <p className="fw-normal mb-1">Consultant</p>
-              <p className="text-muted mb-0">Finance</p>
-            </td>
-            <td>
-              <MDBBadge color="primary" pill>
-                Onboarding
-              </MDBBadge>
-            </td>
-            <td>Junior</td>
-            <td>
-              <MDBBtn color="link" rounded size="sm">
-                Edit
-              </MDBBtn>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <div className="d-flex align-items-center">
-                <img
-                  src="https://mdbootstrap.com/img/new/avatars/7.jpg"
-                  alt=""
-                  style={{ width: "45px", height: "45px" }}
-                  className="rounded-circle"
-                />
-                <div className="ms-3">
-                  <p className="fw-bold mb-1">Kate Hunington</p>
-                  <p className="text-muted mb-0">kate.hunington@gmail.com</p>
-                </div>
-              </div>
-            </td>
-            <td>
-              <p className="fw-normal mb-1">Designer</p>
-              <p className="text-muted mb-0">UI/UX</p>
-            </td>
-            <td>
-              <MDBBadge color="warning" pill>
-                Awaiting
-              </MDBBadge>
-            </td>
-            <td>Senior</td>
-            <td>
-              <MDBBtn color="link" rounded size="sm">
-                Edit
-              </MDBBtn>
-            </td>
-          </tr>
-        </MDBTableBody>
+        {employes.length ? (
+          employes.map((employe) => {
+            return (
+              <MDBTableBody style={{ color: "white" }}>
+                <tr>
+                  <td>
+                    <div className="d-flex align-items-center">
+                      <img
+                        src={
+                          employe.profileImage
+                            ? employe.profileImage
+                            : "https://cdn.pixabay.com/photo/2017/07/18/23/23/user-2517433_640.png"
+                        }
+                        alt=""
+                        style={{ width: "45px", height: "45px" }}
+                        className="rounded-circle"
+                      />
+                      <div className="ms-3">
+                        <p className="fw-bold mb-1">{employe.fullName}</p>
+                        <p className=" mb-0 " style={{ color: "white" }}>
+                          {employe.email}
+                        </p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <p className="fw-normal mb-1">{employe.documento}</p>
+                  </td>
+
+                  <td>{employe.cargo}</td>
+                  <td>
+                    <MDBBtn
+                      onClick={() => deleteEmploye(employe.id)}
+                      color="danger"
+                      rounded
+                      size="sm"
+                    >
+                      <MDBIcon fas icon="trash-alt" />
+                    </MDBBtn>
+                  </td>
+                </tr>
+              </MDBTableBody>
+            );
+          })
+        ) : (
+          <div style={{ alignItems: "center" }}>
+            <h1 style={{ color: "white" }}>No se encontraron datos</h1>
+            <img src="https://media.giphy.com/media/JQMlfqZfEIaQDopMBQ/giphy.gif" />
+          </div>
+        )}
       </MDBTable>
     </div>
   );

@@ -43,7 +43,7 @@ export const FormRegisterManager = () => {
               ></MDBCol>
               <MDBCol lg="6" style={{ paddingInline: "10%" }} className="">
                 <h3 className="text-center mt-3" style={{ color: "white" }}>
-                  Sign Up
+                  Registrar gerente
                 </h3>
                 <Formik
                   initialValues={{
@@ -163,7 +163,7 @@ export const FormRegisterManager = () => {
                           color="light"
                           style={{ color: "white" }}
                         >
-                          Register Account
+                          Registrar
                         </MDBBtn>
                       </div>
                     </form>

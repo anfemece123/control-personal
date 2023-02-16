@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-// import React, { useState } from "react";
 import { Formik } from "formik";
 import validate from "./validate";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import swal from "sweetalert";
 
@@ -16,13 +15,14 @@ import {
 import Form from "react-bootstrap/Form";
 import Navbar from "../NavBar/NavBar";
 import { useAuth } from "../../context/authContext";
+import { useDb } from "../../context/dbContext";
 
 export const FormNewEmployed = () => {
   const [formularioEnviado, setformularioEnviado] = useState(false);
-  //   const dispatch = useDispatch();
 
   const [image, setImage] = useState("");
   const [loading1, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const uploadImage = async (e) => {
     const files = e.target.files;
@@ -43,6 +43,7 @@ export const FormNewEmployed = () => {
     setLoading(false);
   };
   const { loading, user } = useAuth();
+  const { addOrEdit } = useDb();
   if (loading) return <h1>loading</h1>;
   if (!user) return <Navigate to="/" />;
   return (
@@ -72,7 +73,7 @@ export const FormNewEmployed = () => {
             ></MDBCol>
             <MDBCol lg="6" style={{ paddingInline: "10%" }} className="">
               <h3 className="text-center mt-3" style={{ color: "white" }}>
-                Registro de empleado
+                Informacion Operario
               </h3>
               <Formik
                 initialValues={{
@@ -82,9 +83,8 @@ export const FormNewEmployed = () => {
                   cargo: "",
                   profileImage: "",
                 }}
-                onSubmit={(values, { resetForm }) => {
-                  //   dispatch(formRegister(values));
-                  // console.log("en onsubmit", values);
+                onSubmit={async (values, { resetForm }) => {
+                  await addOrEdit(values);
                   resetForm();
                   setformularioEnviado(true);
                   swal({
@@ -92,7 +92,7 @@ export const FormNewEmployed = () => {
                     text: "Remember to verify it! Check your email",
                     icon: "success",
                   });
-                  //   navigate("/login");
+                  navigate("/home");
                 }}
                 validate={(values) => validate(values)}
               >
@@ -105,6 +105,7 @@ export const FormNewEmployed = () => {
                   touched,
                 }) => (
                   <Form className="" onSubmit={handleSubmit}>
+                    {console.log(values)}
                     <Form.Group className="mb-3 p-2">
                       <Form.Label
                         className=""
@@ -130,38 +131,38 @@ export const FormNewEmployed = () => {
 
                     <Form.Group className="mb-3 p-2">
                       <Form.Label className="" htmlFor="firstName">
-                        Phone Number
+                        Documento
                       </Form.Label>
                       <Form.Control
                         className=""
                         type="text"
-                        id="phoneNumber"
-                        name="phoneNumber"
-                        placeholder="phone number"
-                        value={values.phoneNumber}
+                        id="documento"
+                        name="documento"
+                        placeholder="documento "
+                        value={values.documento}
                         onChange={handleChange}
                         onBlur={handleBlur}
                       />
-                      {touched.phoneNumber && errors.phoneNumber && (
-                        <div className="text-danger">{errors.phoneNumber}</div>
+                      {touched.documento && errors.documento && (
+                        <div className="text-danger">{errors.documento}</div>
                       )}
                     </Form.Group>
                     <Form.Group className="mb-3 p-2">
                       <Form.Label className="" htmlFor="firstName">
-                        Address
+                        cargo
                       </Form.Label>
                       <Form.Control
                         className=""
                         type="text"
-                        id="address"
-                        name="address"
-                        placeholder="address"
-                        value={values.address}
+                        id="cargo"
+                        name="cargo"
+                        placeholder="cargo"
+                        value={values.cargo}
                         onChange={handleChange}
                         onBlur={handleBlur}
                       />
-                      {touched.address && errors.address && (
-                        <div className="text-danger">{errors.address}</div>
+                      {touched.cargo && errors.cargo && (
+                        <div className="text-danger">{errors.cargo}</div>
                       )}
                     </Form.Group>
 
