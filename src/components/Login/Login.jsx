@@ -50,6 +50,18 @@ export const Login = () => {
           text: "Usuario baneado temporalmente por muchos intentos de inicio de secion",
           icon: "warning",
         });
+      } else if (errors === "Firebase: Error (auth/invalid-email).") {
+        swal({
+          title: "Peligro!",
+          text: "Introduzca correo",
+          icon: "warning",
+        });
+      } else if (errors === "Firebase: Error (auth/internal-error).") {
+        swal({
+          title: "Peligro!",
+          text: "Introduzca contraseña",
+          icon: "warning",
+        });
       }
     }
   };
