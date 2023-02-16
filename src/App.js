@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import { Login } from "./components/Login/Login";
+import { AuthProvider } from "./context/authContext";
+import { FormRegisterManager } from "./components/FormRegisterManager/FormRegisterManager";
+import { Home } from "./components/Home/Home";
+import { FormNewEmployed } from "./components/FormNewEmployed/FormNewEmployed";
+// import { ProtectedRoute } from "./components/ProtectedRoute";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={<Login />} />
+
+        <Route path="/formRegisterManager" element={<FormRegisterManager />} />
+        <Route path="/FormNewEmployed" element={<FormNewEmployed />} />
+        <Route path="/home" element={<Home />} />
+      </Routes>
+    </AuthProvider>
   );
 }
-
-export default App;
