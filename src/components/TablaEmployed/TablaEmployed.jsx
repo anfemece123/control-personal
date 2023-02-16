@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   MDBBadge,
   MDBBtn,
@@ -8,10 +8,41 @@ import {
   MDBIcon,
 } from "mdb-react-ui-kit";
 import { useDb } from "../../context/dbContext";
+import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/authContext";
 
 export default function TablaEmployed() {
-  const { employes, deleteEmploye } = useDb();
+  const { employes, deleteEmploye, getEmployes2 } = useDb();
+  const navigate = useNavigate();
+  const { loading, user } = useAuth();
 
+  function deleteEmployeFuntion(e) {
+    swal({
+      title: "¿Estas seguro?",
+      text: "Quieres eliminar un operario?",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        deleteEmploye(e);
+        navigate("/home");
+      } else {
+        swal("Operacion cancelada!!");
+      }
+    });
+  }
+  useEffect(() => {
+    getEmployes2();
+  }, []);
+  if (loading)
+    return (
+      <img
+        src="https://media.giphy.com/media/dumfpsshcqTsh233xF/giphy.gif"
+        alt=""
+      />
+    );
   return (
     <div>
       {/* <MDBBtn className="m-3 text-dark" color="light">
@@ -22,9 +53,9 @@ export default function TablaEmployed() {
           <tr>
             <th scope="col">Nombre</th>
             <th scope="col">Documento</th>
-            {/* <th scope="col">Status</th> */}
-            <th scope="col">Position</th>
-            <th scope="col">Actions</th>
+            <th scope="col">Celular</th>
+            <th scope="col">Cargo</th>
+            <th scope="col">Eliminar</th>
           </tr>
         </MDBTableHead>
         {employes.length ? (
@@ -55,11 +86,14 @@ export default function TablaEmployed() {
                   <td>
                     <p className="fw-normal mb-1">{employe.documento}</p>
                   </td>
+                  <td>
+                    <p className="fw-normal mb-1">{employe.celular}</p>
+                  </td>
 
                   <td>{employe.cargo}</td>
                   <td>
                     <MDBBtn
-                      onClick={() => deleteEmploye(employe.id)}
+                      onClick={() => deleteEmployeFuntion(employe.id)}
                       color="danger"
                       rounded
                       size="sm"
@@ -72,9 +106,12 @@ export default function TablaEmployed() {
             );
           })
         ) : (
-          <div style={{ alignItems: "center" }}>
+          <div style={{ marginLeft: "600px" }}>
             <h1 style={{ color: "white" }}>No se encontraron datos</h1>
-            <img src="https://media.giphy.com/media/JQMlfqZfEIaQDopMBQ/giphy.gif" />
+            <img
+              src="https://media.giphy.com/media/JQMlfqZfEIaQDopMBQ/giphy.gif"
+              width="400px"
+            />
           </div>
         )}
       </MDBTable>

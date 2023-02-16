@@ -21,8 +21,8 @@ export const Login = () => {
     try {
       await login(user.email, user.password);
       swal({
-        title: "Excellent!",
-        text: "Remember to verify it! Check your email",
+        title: "Excelente!",
+        text: "Bienvenido a newrona c:",
         icon: "success",
       });
       navigate("/home");
@@ -91,7 +91,7 @@ export const Login = () => {
             ></MDBCol>
             <MDBCol lg="6" style={{ paddingInline: "10%" }} className="">
               <h3 className="text-center mt-3" style={{ color: "white" }}>
-                LOGIN
+                INGRESAR
               </h3>
 
               <form className="" onSubmit={handleSubmit}>
@@ -101,14 +101,14 @@ export const Login = () => {
                     htmlFor="email"
                     style={{ color: "white" }}
                   >
-                    Email
+                    Correo
                   </Form.Label>
                   <Form.Control
                     className=""
                     type="email"
                     id="email"
                     name="email"
-                    placeholder="email"
+                    placeholder="correo"
                     // value={values.email}
                     onChange={handleChange}
                   />
@@ -120,14 +120,14 @@ export const Login = () => {
                     htmlFor="firstName"
                     style={{ color: "white" }}
                   >
-                    Password
+                    Contraseña
                   </Form.Label>
                   <Form.Control
                     className="b"
                     type="password"
                     id="password"
                     name="password"
-                    placeholder="password"
+                    placeholder="Contraseña"
                     onChange={handleChange}
                   />
                 </Form.Group>
@@ -139,7 +139,7 @@ export const Login = () => {
                     color="light"
                     style={{ color: "white" }}
                   >
-                    Register Account
+                    Ingresa
                   </MDBBtn>
                 </div>
                 <hr className="" />

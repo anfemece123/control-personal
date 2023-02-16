@@ -10,12 +10,12 @@ export const Home = () => {
   const { getEmployes2 } = useDb();
   useEffect(() => {
     getEmployes2();
-  }, []);
+  }, [getEmployes2]);
 
   if (loading)
     return (
       <img
-        src="https://media.giphy.com/media/dumfpsshcqTsh233xF/giphy.gif"
+        src="https://media.giphy.com/media/uHKpmhC7ADBA1EFSl6/giphy.gif"
         alt=""
       />
     );

@@ -14,7 +14,13 @@ export const FormRegisterManager = () => {
 
   const { singup, loading, user } = useAuth();
   const navigate = useNavigate();
-  if (loading) return <h1>loading</h1>;
+  if (loading)
+    return (
+      <img
+        src="https://media.giphy.com/media/uHKpmhC7ADBA1EFSl6/giphy.gif"
+        alt=""
+      />
+    );
   if (!user) return <Navigate to="/" />;
   return (
     <div>
@@ -79,14 +85,14 @@ export const FormRegisterManager = () => {
                           htmlFor="email"
                           style={{ color: "white" }}
                         >
-                          Email
+                          Correo
                         </Form.Label>
                         <Form.Control
                           className=""
                           type="email"
                           id="email"
                           name="email"
-                          placeholder="email"
+                          placeholder="Correo"
                           value={values.email}
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -107,14 +113,14 @@ export const FormRegisterManager = () => {
                           htmlFor="firstName"
                           style={{ color: "white" }}
                         >
-                          Password
+                          Contraseña
                         </Form.Label>
                         <Form.Control
                           className="b"
                           type="password"
                           id="password"
                           name="password"
-                          placeholder="password"
+                          placeholder="Contraseña"
                           value={values.password}
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -134,14 +140,14 @@ export const FormRegisterManager = () => {
                           htmlFor="firstName"
                           style={{ color: "white" }}
                         >
-                          Confirm Password
+                          Confirmar contraseña
                         </Form.Label>
                         <Form.Control
                           className=""
                           type="password"
                           id="confirmPassword"
                           name="confirmPassword"
-                          placeholder="confirm password"
+                          placeholder="Confirmar contraseña"
                           value={values.confirmPassword}
                           onChange={handleChange}
                           onBlur={handleBlur}

@@ -30,7 +30,7 @@ export default function validate(values) {
   }
 
   // Utilizamos destructuring para simplificar el código y hacerlo más legible
-  const { fullName, documento, cargo, email } = values;
+  const { fullName, documento, cargo, email, celular } = values;
 
   // Validamos el nombre y el apellido utilizando la función de validación genérica
   validateField(
@@ -45,6 +45,13 @@ export default function validate(values) {
   validateField(
     "documento",
     documento,
+    "Please enter a phone number",
+    "Only numbers are allowed",
+    RegExpressionNum
+  );
+  validateField(
+    "celular",
+    celular,
     "Please enter a phone number",
     "Only numbers are allowed",
     RegExpressionNum

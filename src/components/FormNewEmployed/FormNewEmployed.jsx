@@ -80,6 +80,7 @@ export const FormNewEmployed = () => {
                   fullName: "",
                   email: "",
                   documento: "",
+                  celular: "",
                   cargo: "",
                   profileImage: "",
                 }}
@@ -112,14 +113,14 @@ export const FormNewEmployed = () => {
                         htmlFor="firstName"
                         style={{ color: "white" }}
                       >
-                        Nombre completo
+                        Nombre
                       </Form.Label>
                       <Form.Control
                         className=""
                         type="text"
                         id="fullName"
                         name="fullName"
-                        placeholder="fullName"
+                        placeholder="Nombre"
                         value={values.fullName}
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -130,7 +131,11 @@ export const FormNewEmployed = () => {
                     </Form.Group>
 
                     <Form.Group className="mb-3 p-2">
-                      <Form.Label className="" htmlFor="firstName">
+                      <Form.Label
+                        className=""
+                        htmlFor="firstName"
+                        style={{ color: "white" }}
+                      >
                         Documento
                       </Form.Label>
                       <Form.Control
@@ -148,7 +153,33 @@ export const FormNewEmployed = () => {
                       )}
                     </Form.Group>
                     <Form.Group className="mb-3 p-2">
-                      <Form.Label className="" htmlFor="firstName">
+                      <Form.Label
+                        className=""
+                        htmlFor="firstName"
+                        style={{ color: "white" }}
+                      >
+                        Celular
+                      </Form.Label>
+                      <Form.Control
+                        className=""
+                        type="text"
+                        id="celular"
+                        name="celular"
+                        placeholder="celular "
+                        value={values.celular}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                      {touched.celular && errors.celular && (
+                        <div className="text-danger">{errors.celular}</div>
+                      )}
+                    </Form.Group>
+                    <Form.Group className="mb-3 p-2">
+                      <Form.Label
+                        className=""
+                        htmlFor="firstName"
+                        style={{ color: "white" }}
+                      >
                         cargo
                       </Form.Label>
                       <Form.Control
@@ -167,15 +198,19 @@ export const FormNewEmployed = () => {
                     </Form.Group>
 
                     <Form.Group className="mb-3 p-2">
-                      <Form.Label className="" htmlFor="email">
-                        Email
+                      <Form.Label
+                        className=""
+                        htmlFor="email"
+                        style={{ color: "white" }}
+                      >
+                        Correo
                       </Form.Label>
                       <Form.Control
                         className=""
                         type="email"
                         id="email"
                         name="email"
-                        placeholder="email"
+                        placeholder="Correo"
                         value={values.email}
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -187,7 +222,9 @@ export const FormNewEmployed = () => {
 
                     <Form.Group className="mb-3 p-2">
                       <p hidden>{(values.profileImage = image)}</p>
-                      <p className="text-muted">Image</p>
+                      <p className="" style={{ color: "white" }}>
+                        Foto
+                      </p>
                       <MDBInputGroup
                         className="mb-3"
                         textBefore="Upload"
@@ -206,14 +243,19 @@ export const FormNewEmployed = () => {
                       {loading1 ? (
                         <img src="https://tradinglatam.com/wp-content/uploads/2019/04/loading-gif-png-4.gif" />
                       ) : (
-                        <img src={image} width="230px" className="mt-3" />
+                        <img src={image} width="100px" className="mt-3" />
                       )}
                     </Form.Group>
-                    <div className="mb-3 p-2">
-                      <MDBBtn color="primary" outline type="submit">
-                        Register Account
-                      </MDBBtn>
-                    </div>
+                    {/* <div className="mb-3 p-2"> */}
+                    <MDBBtn
+                      rounded
+                      className="text-dark"
+                      color="light"
+                      style={{ color: "white" }}
+                    >
+                      Agregar
+                    </MDBBtn>
+                    {/* </div> */}
                     <hr className="" />
                   </Form>
                 )}
