@@ -10,7 +10,7 @@ export const Home = () => {
   const { getEmployes2 } = useDb();
   useEffect(() => {
     getEmployes2();
-  }, [getEmployes2]);
+  }, []);
 
   if (loading)
     return (

@@ -18,18 +18,19 @@ export default function TablaEmployed() {
   const { loading, user } = useAuth();
 
   function deleteEmployeFuntion(e) {
+    deleteEmploye(e);
     swal({
-      title: "¿Estas seguro?",
-      text: "Quieres eliminar un operario?",
+      title: "Usuario elminiado",
+      text: "",
       icon: "warning",
-      buttons: true,
+      // buttons: true,
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        deleteEmploye(e);
+        getEmployes2();
         navigate("/home");
       } else {
-        swal("Operacion cancelada!!");
+        swal("Operacion realizada!!");
       }
     });
   }
