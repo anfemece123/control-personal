@@ -20,7 +20,8 @@ export default function validate(values) {
   }
 
   // Utilizamos destructuring para simplificar el código y hacerlo más legible
-  const { email, password, confirmPassword } = values;
+  const { nombre, email, password, confirmPassword } = values;
+  validateField("nombre", nombre, "Insertar Nombre");
   validateField(
     "email",
     email,

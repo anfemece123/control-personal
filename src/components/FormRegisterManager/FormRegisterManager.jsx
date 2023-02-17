@@ -8,11 +8,13 @@ import swal from "sweetalert";
 import { MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdb-react-ui-kit";
 import Form from "react-bootstrap/Form";
 import Navbar from "../NavBar/NavBar";
+import { useDb } from "../../context/dbContext";
 
 export const FormRegisterManager = () => {
   const [formularioEnviado, setformularioEnviado] = useState(false);
 
   const { singup, loading, user } = useAuth();
+  const { addManager } = useDb();
   const navigate = useNavigate();
   if (loading)
     return (
@@ -53,6 +55,7 @@ export const FormRegisterManager = () => {
                 </h3>
                 <Formik
                   initialValues={{
+                    nombre: "",
                     email: "",
                     password: "",
                     confirmPassword: "",
@@ -60,6 +63,7 @@ export const FormRegisterManager = () => {
                   onSubmit={async (values, { resetForm }) => {
                     try {
                       await singup(values.email, values.password);
+                      await addManager(values);
                       resetForm();
                       setformularioEnviado(true);
                       swal({
@@ -67,7 +71,7 @@ export const FormRegisterManager = () => {
                         text: "Gerente registrado",
                         icon: "success",
                       });
-                      navigate("/home");
+                      navigate("/tablaManagers");
                     } catch (error) {
                       if (
                         error.message ===
@@ -92,6 +96,33 @@ export const FormRegisterManager = () => {
                     touched,
                   }) => (
                     <form className="" onSubmit={handleSubmit}>
+                      <Form.Group className="mb-3 p-2">
+                        <Form.Label
+                          className=""
+                          htmlFor="email"
+                          style={{ color: "white" }}
+                        >
+                          Nombre
+                        </Form.Label>
+                        <Form.Control
+                          className=""
+                          type="nombre"
+                          id="nombre"
+                          name="nombre"
+                          placeholder="nombre"
+                          value={values.nombre}
+                          onChange={handleChange}
+                          onBlur={handleBlur}
+                        />
+                        {touched.nombre && errors.nombre && (
+                          <div
+                            className="text-danger "
+                            style={{ background: "#FCE4EC" }}
+                          >
+                            {errors.nombre}
+                          </div>
+                        )}
+                      </Form.Group>
                       <Form.Group className="mb-3 p-2">
                         <Form.Label
                           className=""
@@ -177,6 +208,7 @@ export const FormRegisterManager = () => {
 
                       <div className="mb-3 p-2">
                         <MDBBtn
+                          type="submit"
                           rounded
                           className="text-dark"
                           color="light"

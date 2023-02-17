@@ -16,6 +16,7 @@ export const useAuth = () => {
 };
 
 export function AuthProvider({ children }) {
+  // const [users, setUsers] = useState();
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
   const logout = () => signOut(auth);
@@ -31,11 +32,16 @@ export function AuthProvider({ children }) {
     );
     console.log(userCredentials);
   };
+  // const auth = getAuth();
+
   useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    onAuthStateChanged(auth, (current) => {
+      setUser(current);
       setLoading(false);
     });
+    // setUsers(auth.currentUser);
+    // console.log(onAuthStateChanged());
+    // onAuthStateChanged(auth, () => setUsers());
   }, []);
 
   return (

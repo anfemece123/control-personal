@@ -31,7 +31,10 @@ export default function Navbar() {
     <MDBNavbar expand="lg" light bgColor="light">
       <MDBContainer fluid>
         <Link to="/home">
-          <MDBNavbarBrand href="#">Home</MDBNavbarBrand>
+          <MDBNavbarBrand href="#">Operarios</MDBNavbarBrand>
+        </Link>
+        <Link to="/TablaManagers">
+          <MDBNavbarBrand href="#">Gerentes</MDBNavbarBrand>
         </Link>
 
         <MDBNavbarToggler
@@ -59,9 +62,9 @@ export default function Navbar() {
             </Link>
           </MDBNavbarNav>
           <MDBNavbarItem>
-            <MDBNavbarLink disabled href="#" tabIndex={-1} aria-disabled="true">
+            {/* <MDBNavbarLink disabled href="#" tabIndex={-1} aria-disabled="true">
               {user.email}
-            </MDBNavbarLink>
+            </MDBNavbarLink> */}
           </MDBNavbarItem>
           <MDBDropdown>
             <MDBDropdownToggle tag="a" className="nav-link" role="button">

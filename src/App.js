@@ -6,6 +6,7 @@ import { FormRegisterManager } from "./components/FormRegisterManager/FormRegist
 import { Home } from "./components/Home/Home";
 import { FormNewEmployed } from "./components/FormNewEmployed/FormNewEmployed";
 import { DbProvider } from "./context/dbContext";
+import TablaManagers from "./components/TablaManagers/TablaManagers";
 // import { ProtectedRoute } from "./components/ProtectedRoute";
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Login />} />
 
+          <Route path="/tablaManagers" element={<TablaManagers />} />
           <Route
             path="/formRegisterManager"
             element={<FormRegisterManager />}

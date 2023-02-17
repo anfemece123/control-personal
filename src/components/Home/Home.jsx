@@ -6,7 +6,8 @@ import { Navigate } from "react-router-dom";
 import { useDb } from "../../context/dbContext";
 
 export const Home = () => {
-  const { loading, user } = useAuth();
+  const { loading, user, users } = useAuth();
+  // console.log("users", users);
   const { getEmployes2 } = useDb();
   useEffect(() => {
     getEmployes2();
