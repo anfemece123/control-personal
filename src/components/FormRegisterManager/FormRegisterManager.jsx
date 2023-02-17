@@ -57,16 +57,29 @@ export const FormRegisterManager = () => {
                     password: "",
                     confirmPassword: "",
                   }}
-                  onSubmit={(values, { resetForm }) => {
-                    singup(values.email, values.password);
-                    resetForm();
-                    setformularioEnviado(true);
-                    swal({
-                      title: "Excellent!",
-                      text: "Remember to verify it! Check your email",
-                      icon: "success",
-                    });
-                    navigate("/home");
+                  onSubmit={async (values, { resetForm }) => {
+                    try {
+                      await singup(values.email, values.password);
+                      resetForm();
+                      setformularioEnviado(true);
+                      swal({
+                        title: "Excelente!",
+                        text: "Gerente registrado",
+                        icon: "success",
+                      });
+                      navigate("/home");
+                    } catch (error) {
+                      if (
+                        error.message ===
+                        "Firebase: Error (auth/email-already-in-use)."
+                      ) {
+                        swal({
+                          title: "Ups!",
+                          text: "El usuario ya exste",
+                          icon: "warning",
+                        });
+                      }
+                    }
                   }}
                   validate={(values) => validate(values)}
                 >

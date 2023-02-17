@@ -60,7 +60,7 @@ export default function Navbar() {
           </MDBNavbarNav>
           <MDBNavbarItem>
             <MDBNavbarLink disabled href="#" tabIndex={-1} aria-disabled="true">
-              Bienvenido {user.email}
+              {user.email}
             </MDBNavbarLink>
           </MDBNavbarItem>
           <MDBDropdown>
@@ -74,8 +74,6 @@ export default function Navbar() {
             </MDBDropdownToggle>
 
             <MDBDropdownMenu>
-              <MDBDropdownItem link>Profile</MDBDropdownItem>
-
               <MDBDropdownItem link onClick={handleLogout}>
                 Logout
               </MDBDropdownItem>

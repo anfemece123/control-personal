@@ -5,7 +5,7 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 
 export const authContext = createContext();
 
@@ -19,9 +19,10 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
   const logout = () => signOut(auth);
-  const singup = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password);
+  const singup = async (email, password) => {
+    await createUserWithEmailAndPassword(auth, email, password);
   };
+
   const login = async (email, password) => {
     const userCredentials = await signInWithEmailAndPassword(
       auth,
