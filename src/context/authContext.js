@@ -16,14 +16,16 @@ export const useAuth = () => {
 };
 
 export function AuthProvider({ children }) {
-  // const [users, setUsers] = useState();
+  // Almacenamiento de usuarios y loading 👻
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
+  //cerrar cesion
   const logout = () => signOut(auth);
+  //registro
   const singup = async (email, password) => {
     await createUserWithEmailAndPassword(auth, email, password);
   };
-
+  //ingreso
   const login = async (email, password) => {
     const userCredentials = await signInWithEmailAndPassword(
       auth,
@@ -35,9 +37,11 @@ export function AuthProvider({ children }) {
   // const auth = getAuth();
 
   useEffect(() => {
+    //Pasar la info al almacenamiento
     onAuthStateChanged(auth, (current) => {
       setUser(current);
       setLoading(false);
+      console.log(current);
     });
     // setUsers(auth.currentUser);
     // console.log(onAuthStateChanged());

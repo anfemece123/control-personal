@@ -18,10 +18,11 @@ export const useDb = () => {
 };
 
 export const DbProvider = ({ children }) => {
+  //almacenamiento de empleados y gerente
   const [employes, setEmployes] = useState([]);
   const [managers, setManagers] = useState([]);
+  //funcion que crea la nueva coleccion en firebase
   const addOrEdit = (data) => {
-    //  db.collection("employes").doc().set(data);
     addDoc(collection(db, "employes"), data);
     console.log("nuevo empleado agregado");
   };
@@ -32,11 +33,13 @@ export const DbProvider = ({ children }) => {
   };
   const getEmployes2 = async () => {
     const querySnapshot = await getEmploye1();
-    // onGetLinks((querySnapshot) => {
+  
+
     const docs = [];
     querySnapshot.forEach((doc) => {
       docs.push({ ...doc.data(), id: doc.id });
     });
+    querySnapshot.forEach((doc) => console.log("docs", doc.data()));
     setEmployes(docs);
     // });
   };

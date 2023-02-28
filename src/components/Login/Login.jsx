@@ -12,7 +12,7 @@ export const Login = () => {
     email: "",
     password: "",
   });
-  const [error, setError] = useState("");
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -90,7 +90,7 @@ export const Login = () => {
               lg="6"
               style={{
                 backgroundImage:
-                  "url('https://res.cloudinary.com/dyfjoi0td/image/upload/v1676498513/ecommerce/isologo-newrona_daekhd.png')",
+                  "url('https://cdn-icons-png.flaticon.com/512/3052/3052182.png')",
                 backgroundRepeat: "no-repeat",
                 backgroundPosition: "center",
                 backgroundSize: "380px",
